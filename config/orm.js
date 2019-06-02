@@ -36,12 +36,17 @@ function objToSql(ob) {
 //   **********
 
 var orm = {
-    selectAll: function (callback) {
-        connection.query("SELECT * FROM burgers;", function (err, result) {
-            if (err) throw err;
+
+    selectAll: function (tableInput, callback) {
+        var queryString = "SELECT * FROM " + tableInput + ";";
+        connection.query(queryString, function (err, result) {
+            if (err) {
+                throw err;
+            }
             callback(result);
         });
     },
+    
     insertOne: function (burger_name, callback) {
         connection.query("INSERT INTO burgers SET ?", {
             burger_name: burger_name,
@@ -52,12 +57,12 @@ var orm = {
         })
     },
     updateOne: function (burgerId, callback) {
-        connection.query("UPDATE burgers SET ? WHERE ?", [{devoured: true}, {id: burgerId}],
-        function (err, result) {
-            if (err) throw err;
-            callback(result);
-        });
-     }
+        connection.query("UPDATE burgers SET ? WHERE ?", [{ devoured: true }, { id: burgerId }],
+            function (err, result) {
+                if (err) throw err;
+                callback(result);
+            });
+    }
 };
 
 module.exports = orm;
