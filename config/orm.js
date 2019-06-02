@@ -34,9 +34,7 @@ var orm = {
     selectAll: function (tableInput, callback) {
         var queryString = "SELECT * FROM " + tableInput + ";";
         connection.query(queryString, function (err, result) {
-            if (err) {
-                throw err;
-            }
+            if (err) { throw err; }
             callback(result);
         });
     },
@@ -53,9 +51,7 @@ var orm = {
         console.log(queryString);
 
         connection.query(queryString, vals, function (err, result) {
-            if (err) {
-                throw err;
-            }
+            if (err) { throw err; }
             callback(result);
         });
     },
@@ -69,9 +65,7 @@ var orm = {
 
         console.log(queryString);
         connection.query(queryString, function (err, result) {
-            if (err) {
-                throw err;
-            }
+            if (err) { throw err; }
             callback(result);
         });
     }
