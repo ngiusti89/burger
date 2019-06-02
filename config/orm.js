@@ -51,7 +51,13 @@ var orm = {
             callback(result);
         })
     },
-    // updateOne: function(){}
+    updateOne: function (burgerId, callback) {
+        connection.query("UPDATE burgers SET ? WHERE ?", [{devoured: true}, {id: burgerId}],
+        function (err, result) {
+            if (err) throw err;
+            callback(result);
+        });
+     }
 };
 
 module.exports = orm;
