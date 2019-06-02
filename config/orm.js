@@ -65,14 +65,22 @@ var orm = {
             callback(result);
         });
     },
+    updateOne: function(table, objColVals, condition, callback) {
+        var queryString = "UPDATE " + table;
     
-    updateOne: function (burgerId, callback) {
-        connection.query("UPDATE burgers SET ? WHERE ?", [{ devoured: true }, { id: burgerId }],
-            function (err, result) {
-                if (err) throw err;
-                callback(result);
-            });
-    }
+        queryString += " SET ";
+        queryString += objToSql(objColVals);
+        queryString += " WHERE ";
+        queryString += condition;
+    
+        console.log(queryString);
+        connection.query(queryString, function(err, result) {
+          if (err) {
+            throw err;
+          }
+          callback(result);
+        });
+      }
 };
 
 module.exports = orm;
