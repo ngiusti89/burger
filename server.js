@@ -8,7 +8,6 @@ var app = express();
 app.use(express.static("public"));
 
 app.engine("handlebars", exHandBars({ defaultLayout: "main" }));
-
 app.set("view engine", "handlebars");
 
 var routes = require("./controllers/burgers_controller.js");
