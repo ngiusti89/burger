@@ -1,5 +1,13 @@
 var orm = require("../config/orm.js");
 
-var burger = ;
+var burger = {
+    selectAll: function (callback) {
+        orm.selectAll(function (res) {
+            callback(res);
+        });
+    },
+    // insertOne: function(){},
+    // updateOne: function(){}
+}
 
 module.exports = burger;
