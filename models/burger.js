@@ -6,7 +6,11 @@ var burger = {
             callback(res);
         });
     },
-    // insertOne: function(){},
+    insertOne: function (cols, vals, callback) {
+        orm.create("burgers", cols, vals, function (res) {
+            callback(res);
+        });
+    },
     // updateOne: function(){}
 }
 
